@@ -22,8 +22,8 @@
 (defun mfree-head-index (index)
   "Given index to end-of-magic, return index of free areas head"
   ;; reserve enough space for two words after magic
-  (let ((pointer (ceiling (+ 2 index) +mem-box/min-words+)))
-    (- (box-pointer->size pointer) +mem-box/header-words+)))
+  (let ((vid (ceiling (+ 2 index) +mem-box/min-words+)))
+    (- (box-vid->size vid) +mem-box/header-words+)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

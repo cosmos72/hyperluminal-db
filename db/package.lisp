@@ -47,18 +47,24 @@
                 #:+mem-box/min-words+    #:+mem-box/max-words+
                 #:+mem-box/header-words+ #:+mem-box/min-payload-words+
 
-                #:+native-word-type+   #:msizeof    #:mget-t    #:mset-t
-                #:mem-word
+                #:+native-word-type+     #:maddress  #:mem-word
+                #:msizeof    #:mget-t    #:mset-t
+                
+                #:mzero-words
                 
                 #:mem-size #:mem-size+ #:mem-size+1 #:mem-size- #:mem-size-1
                 #:incf-mem-size        #:mem-size*
-                #:mget-value #:mset-fulltag-and-value
 
-                #:mread-magic #:mwrite-magic #:!mread #:!mwrite #:!mzero-words
+                #:mem-tag  #:mem-vid   #:mget-vid
+                #:with-tag-and-vid     #:mset-tag-and-vid
 
-                #:box-pointer->size          #:size->box-pointer
-                #:box         #:make-box     #:box-n-words
-                #:reuse-box   #:box-realloc  #:box-index  #:box-value)
+                #:mdetect-box-type     #:mread-box  #:msize-box-rounded-up
+                #:mwrite-box/header    #:mwrite-box
+                #:box-vid->size #:size->box-vid
+
+                #:mread-magic #:mwrite-magic)
+                                
+
 
   (:export      #:hldb-version #:hldb-abi-version
                 #:hldb-open    #:hldb-close))

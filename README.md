@@ -105,7 +105,7 @@ Hyperluminal-DB is currently tested on the following Common Lisp implementations
 ### Other systems
 
 Hyperluminal-DB requires several libraries to work: LOG4CL, CLOSER-MOP, TRIVIAL-GARBAGE,
-BORDEAUX-THREADS, CFFI, OSICAT and STMX. The last four, while reasonably portable,
+BORDEAUX-THREADS, CFFI, OSICAT, STMX and HYPERLUMINAL-MEM. The last five, while reasonably portable,
 exploit features well beyond ANSI Common Lisp and their support for the various Common Lisp
 implementations varies widely.
 

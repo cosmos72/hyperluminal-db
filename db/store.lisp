@@ -30,7 +30,8 @@
      (:hlmem-abi-version ,hlmem::+hlmem-abi-version+)
      (:bits-per-byte     ,hlmem::+mem-byte/bits+)
      (:bits-per-tag      ,hlmem::+mem-tag/bits+)
-     (:bits-per-pointer  ,hlmem::+mem-pointer/bits+)
+     (:bits-per-vid      ,hlmem::+mem-vid/bits+)
+     (:bits-per-int      ,hlmem::+mem-int/bits+)
      (:bits-per-word     ,hlmem::+mem-word/bits+)
      (:bits-per-base-char  ,hlmem::+base-char/bits+)
      (:bits-per-character  ,hlmem::+character/bits+)
@@ -63,8 +64,8 @@
        ;; this is just an example, and not really needed
        (mmap-max-bytes #x7FE000000000)
 
-       ;; compute maximum bytes addressable by a hyperluminal-db:mem-pointer
-       (persist-max-bytes (* +msizeof-word+ (box-pointer->size hlmem::+most-positive-pointer+)))
+       ;; compute maximum bytes addressable by a hyperluminal-db:mem-vid
+       (persist-max-bytes (* +msizeof-word+ (box-vid->size hlmem::+most-positive-vid+)))
                     
        (max-bytes (min arch-max-bytes mmap-max-bytes persist-max-bytes ))
 

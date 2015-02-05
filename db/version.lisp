@@ -20,9 +20,9 @@
 (in-package :hyperluminal-db)
 
 
-(define-constant-once +hldb-version+ '(0 5 1))
+(define-constant-once +hldb-version+ '(0 6 0))
 
-(define-constant-once +hldb-abi-version+ '(0 1 0))
+(define-constant-once +hldb-abi-version+ '(1 6 0))
 
 
 (defun hldb-version ()
