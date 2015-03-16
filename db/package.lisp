@@ -38,8 +38,12 @@
 
   (:import-from #:hyperluminal-mem-ffi
 
-                #:os-getpagesize #:ffi-defstruct
-                #:+bad-fd+)
+                #:+null-pointer+ #:null-pointer?
+                
+                #:os-getpagesize #:+bad-fd+
+                
+                #:os-open-fd #:os-close-fd   #:os-stat-fd-size #:os-truncate-fd 
+                #:os-mmap-fd #:os-munmap-ptr #:os-msync-ptr)
                 
   (:import-from #:hyperluminal-mem
 
@@ -48,7 +52,7 @@
                 #:+mem-box/min-words+    #:+mem-box/max-words+
                 #:+mem-box/header-words+ #:+mem-box/min-payload-words+
 
-                #:+native-word-type+     #:maddress  #:mem-word
+                #:maddress   #:mem-word
                 #:msizeof    #:mget-t    #:mset-t
                 
                 #:mzero-words

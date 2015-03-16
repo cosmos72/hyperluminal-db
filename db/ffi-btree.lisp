@@ -20,19 +20,15 @@
 (in-package :hyperluminal-db)
 
 (eval-always
-  (defconstant +btree-el-type+   +native-word-type+)
+  (defconstant +btree-el-type+   hlmem::+chosen-word-type+)
   (deftype     btree-el ()       'mem-word)
-  (defconstant +btree-nbytes+    4096)
+  (defconstant +btree-nbytes+    8192)
   (defconstant +btree-nelements+ (truncate +btree-nbytes+ (msizeof +btree-el-type+)))
   (defconstant +btree-payloads-elements+ 3) ;; one child index and one range [start, end)
   (defconstant +btree-npayloads+ (truncate (1+ +btree-nelements+) +btree-payloads-elements+))
   (defconstant +btree-nindex+    +btree-npayloads+)
   (defconstant +btree-range-start-index+ +btree-nindex+))
   
-
-          
-(ffi-defstruct (btree :size #.+btree-nbytes+)
-  (el #.+btree-el-type+ :count #.+btree-nelements+))
 
 (declaim (inline btree-el set-btree-el))
 

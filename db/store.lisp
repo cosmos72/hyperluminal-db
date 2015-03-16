@@ -24,22 +24,22 @@
 
 (defun get-abi ()
   (load-time-value
-   `((:hldb-version      ,+hldb-version+)
-     (:hldb-abi-version  ,+hldb-abi-version+)
-     (:hlmem-version     ,hlmem::+hlmem-version+)
-     (:hlmem-abi-version ,hlmem::+hlmem-abi-version+)
-     (:bits-per-byte     ,hlmem::+mem-byte/bits+)
-     (:bits-per-tag      ,hlmem::+mem-tag/bits+)
-     (:bits-per-vid      ,hlmem::+mem-vid/bits+)
-     (:bits-per-int      ,hlmem::+mem-int/bits+)
-     (:bits-per-word     ,hlmem::+mem-word/bits+)
-     (:bits-per-ascii-char ,hlmem::+ascii-char/bits+)
-     (:bits-per-character  ,hlmem::+character/bits+)
-     (:sizeof-byte         ,hlmem::+msizeof-byte+)
-     (:sizeof-word         ,+msizeof-word+)
-     (:sizeof-single-float ,hlmem::+msizeof-sfloat+)
-     (:sizeof-double-float ,hlmem::+msizeof-dfloat+)
-     (:endianity           ,hlmem::+mem/chosen-endianity+))))
+   `((:hldb-version      . ,+hldb-version+)
+     (:hldb-abi-version  . ,+hldb-abi-version+)
+     (:hlmem-version     . ,hlmem::+hlmem-version+)
+     (:hlmem-abi-version . ,hlmem::+hlmem-abi-version+)
+     (:bits-per-byte     . ,hlmem::+mem-byte/bits+)
+     (:bits-per-tag      . ,hlmem::+mem-tag/bits+)
+     (:bits-per-vid      . ,hlmem::+mem-vid/bits+)
+     (:bits-per-int      . ,hlmem::+mem-int/bits+)
+     (:bits-per-word     . ,hlmem::+mem-word/bits+)
+     (:bits-per-ascii-char . ,hlmem::+ascii-char/bits+)
+     (:bits-per-character  . ,hlmem::+character/bits+)
+     (:sizeof-byte         . ,hlmem::+msizeof-byte+)
+     (:sizeof-word         . ,+msizeof-word+)
+     (:sizeof-single-float . ,hlmem::+msizeof-sfloat+)
+     (:sizeof-double-float . ,hlmem::+msizeof-dfloat+)
+     (:endianity           . ,hlmem::+mem/chosen-endianity+))))
 
 
 
@@ -81,7 +81,7 @@
 (defun open-fd (filename &optional (min-words 0))
   (declare (type mem-size min-words))
 
-  (let* ((fd (the fd (os-open-fd-rw filename)))
+  (let* ((fd (the fd (os-open-fd filename :read t :write t)))
          (file-words (truncate
                       (the (integer 0) (os-stat-fd-size fd))
                       +msizeof-word+)))
@@ -102,13 +102,12 @@
 (defun mmap (fd n-words)
   (declare (type fd fd)
            (type mem-size n-words))
-  (os-mmap-fd-rw fd 0 (* n-words +msizeof-word+)))
+  (os-mmap-fd fd :offset-bytes 0 :length-bytes (* n-words +msizeof-word+) :read t :write t))
 
 (defun munmap (ptr n-words)
   (declare (type maddress ptr)
            (type mem-size n-words))
   (os-munmap-ptr ptr (* n-words +msizeof-word+)))
-
 
 (defun msync (ptr n-words &key sync)
   (declare (type maddress ptr)
