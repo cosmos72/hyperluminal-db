@@ -33,13 +33,13 @@
      (:bits-per-vid      ,hlmem::+mem-vid/bits+)
      (:bits-per-int      ,hlmem::+mem-int/bits+)
      (:bits-per-word     ,hlmem::+mem-word/bits+)
-     (:bits-per-base-char  ,hlmem::+base-char/bits+)
+     (:bits-per-ascii-char ,hlmem::+ascii-char/bits+)
      (:bits-per-character  ,hlmem::+character/bits+)
      (:sizeof-byte         ,hlmem::+msizeof-byte+)
      (:sizeof-word         ,+msizeof-word+)
      (:sizeof-single-float ,hlmem::+msizeof-sfloat+)
      (:sizeof-double-float ,hlmem::+msizeof-dfloat+)
-     (:little-endian       ,hlmem::+mem/little-endian+))))
+     (:endianity           ,hlmem::+mem/chosen-endianity+))))
 
 
 

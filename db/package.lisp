@@ -25,7 +25,7 @@
 
   (:nicknames #:hl-db #:hldb)
 
-  (:use #:cl #:hyperluminal-ffi)
+  (:use #:cl)
 
   (:import-from #:stmx.lang
 
@@ -36,9 +36,10 @@
                 #:when-bind    #:if-bind       #:awhen    #:aif 
                 #:log.debug    #:log.trace     #:log.make-logger)
 
-  (:import-from #:hyperluminal-ffi
+  (:import-from #:hyperluminal-mem-ffi
 
-                #:os-getpagesize #:ffi-defstruct)
+                #:os-getpagesize #:ffi-defstruct
+                #:+bad-fd+)
                 
   (:import-from #:hyperluminal-mem
 
