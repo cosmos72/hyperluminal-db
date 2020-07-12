@@ -163,7 +163,7 @@ and write them back to file"
 
 (defun hldb-close ()
   (unless (null-pointer? *p*)
-    (munmap *p* *fwords*)
+    (munmap (the ffi-address *p*) *fwords*)
     (setf *p* +null-pointer+))
   (setf *mfree* nil)
   (unless (eql +bad-fd+ *fd*)
