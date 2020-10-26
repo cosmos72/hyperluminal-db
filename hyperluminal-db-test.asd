@@ -20,27 +20,20 @@
 
 (in-package :cl-user)
 
-(asdf:defsystem :hyperluminal-db
-  :name "HYPERLUMINAL-DB"
+(asdf:defsystem :hyperluminal-db-test
+  :name "HYPERLUMINAL-DB-TEST"
   :version "0.5.1"
-  :license "GPLv3"
   :author "Massimiliano Ghilardi"
-  :description "Persistent, transactional object store."
+  :license "GPLv3"
+  :description "test suite for hyperluminal-db"
 
   :depends-on (:log4cl
-               :stmx
-               :hyperluminal-mem
-               :trivial-garbage)
+               :fiveam
+               :hyperluminal-db)
 
-  :components
-  ((:static-file "hyperluminal-db.asd")
-	       
-   (:module :db
-    :components ((:file "package")
-		 (:file "version"        :depends-on ("package"))
-		 (:file "ffi-btree"      :depends-on ("version"))
-		 (:file "box"            :depends-on ("version"))
-		 (:file "alloc"          :depends-on ("box"))
-		 (:file "store"          :depends-on ("alloc")))))
+  :components ((:module :test
+                :components ((:file "package"))))
 
-  :in-order-to ((asdf:test-op (asdf:test-op "hyperluminal-db-test"))))
+  :perform (asdf:test-op
+            (o c)
+            (eval (read-from-string "(fiveam:run! 'hyperluminal-db-test:suite)"))))
